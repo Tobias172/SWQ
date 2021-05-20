@@ -3,58 +3,76 @@
 <head>
 <style>
 .flex-container {
-//  display: flex;
+  display: flex;
 //  background-color: DodgerBlue;
 }
 
 .flex-container > div {
-//  background-color: #f1f1f1;
+  background-color: #f1f1f1;
+  margin: 5px;
+  padding: 10px;
+  font-size: 20px;
+}
+
+label, input {
 //  margin: 10px;
 //  padding: 20px;
-//  font-size: 30px;
+//  font-size: 20px;
 }
 </style>
 </head>
 <body>
 
 <form id="ContactSplit" name="ContactSplit">
-	<div class="flex-container">
-		<label for="iInput">Eingabe:</label>
-		<input type="text" id="iInput" name="iInput"><br><br>
-
-		<label for="iOutput">Ausgabe:</label>
-		<div id="iOutput" name="iOutput">
-		<div>
-			<label for="iSalutation">Anrede:</label>
-			<input type="text" id="iSalutation" name="iSalutation"><br><br>
-		</div>
-		<div>
-			<label for="iSalutationLetter">Briefanrede:</label>
-			<input type="text" id="iSalutationLetter" name="iSalutationLetter"><br><br>
-		</div>
-		<div>
-			<label for="iTitle">Titel:</label>
-			<input type="text" id="iTitle" name="iTitle"><br><br>
-		</div>
-		<div>
-			<label for="iGender">Geschlecht:</label>
-			<input type="text" id="iGender" name="iGender"><br><br>
-		</div>
-		<div>
-			<label for="iFirstName">Vorname:</label>
-			<input type="text" id="iFirstName" name="iFirstName"><br><br>
-		</div>
-		<div>
-			<label for="iLastName">Nachname:</label>
-			<input type="text" id="iLastName" name="iLastName"><br><br>
+	<div>
+		<div class="flex-container">
+			<div>
+				<label for="iInput">Eingabe:</label><br>
+				<input type="text" id="iInput" name="iInput"><br><br>
+			</div>
+			<div>
+				<label for="iLanguageFile">Sprachdatei:</label><br>
+				<input type="file" id="iLanguageFile" name="iLanguageFile" accept=".csv"><br><br>
+			</div>
 		</div>
 		
-		<input type="radio" id="male" name="gender" value="male">
-		<label for="male">Männlich</label><br>
-		<input type="radio" id="female" name="gender" value="female">
-		<label for="female">Weiblich</label><br>
-		<input type="radio" id="other" name="gender" value="other">
-		<label for="other">Divers</label>
+		<label for="iOutput">Ausgabe:</label><br>
+		<div id="iOutput" name="iOutput" class="flex-container">
+			<div>
+				<label for="iSalutation">Anrede:</label><br>
+				<input type="text" id="iSalutation" name="iSalutation"><br><br>
+			</div>
+			<div>
+				<label for="iSalutationLetter">Briefanrede:</label><br>
+				<input type="text" id="iSalutationLetter" name="iSalutationLetter"><br><br>
+			</div>
+			<div>
+				<label for="iTitle">Titel:</label><br>
+				<input type="text" id="iTitle" name="iTitle"><br><br>
+			</div>
+		</div>
+		<div id="iOutput2" name="iOutput2" class="flex-container">
+			<div>
+				<label for="iGender">Geschlecht:</label><br>
+				<input type="text" id="iGender" name="iGender"><br><br>
+			</div>
+			<div>
+				<label for="iFirstName">Vorname:</label><br>
+				<input type="text" id="iFirstName" name="iFirstName"><br><br>
+			</div>
+			<div>
+				<label for="iLastName">Nachname:</label><br>
+				<input type="text" id="iLastName" name="iLastName"><br><br>
+			</div>
+		</div>
+		<div>
+			<input type="radio" id="male" name="gender" value="male">
+			<label for="male">Männlich</label><br>
+			<input type="radio" id="female" name="gender" value="female">
+			<label for="female">Weiblich</label><br>
+			<input type="radio" id="other" name="gender" value="other">
+			<label for="other">Divers</label><br><br>
+		</div>
 		
 		<label for="iLeftover">Nicht erkannter Text:</label>
 		<input type="text" id="iLeftover" name="iLeftover"><br><br>
@@ -62,7 +80,7 @@
 		<label for="iTotal">Gesamt:</label>
 		<input type="text" id="iTotal" name="iTotal"><br><br>
 		
-		<input type="submit" name="sConvert" value="Convertieren">
+		<input type="submit" name="sConvert" value="Konvertieren">
 	</div>
 </form>
 
