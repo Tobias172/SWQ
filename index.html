@@ -21,7 +21,7 @@
 			</div>
 		</div>
 		
-		<label for="iOutput" class="output">Ausgabe:</label><br>
+		<label for="iOutput" class="heading">Ausgabe:</label><br>
 		<div id="iOutput" name="iOutput" class="flex-container">
 			<div>
 				<label for="iSalutation">Anrede:</label><br>
@@ -68,10 +68,17 @@
 </form>
 
 <form>
-	<label for="iAddTitle">Titel hinzufügen:</label><br>
-	<input type="text" id="iAddTitle" name="iAddTitle"><br>
-	<input type="button" name="sAddTitleTemp" id="sAddTitleTemp" value="Titel temporär hinzufügen">
-	<input type="button" name="sAddTitle" id="sAddTitle" value="Titel dauerhaft hinzufügen">
+	<label for="iTitleEditor" class="heading">Weitere Funktionen:</label><br>
+	<div id="iTitleEditor" name="iTitleEditor" class="flex-container">
+		<div>
+			<label for="iAddTitle">Titel hinzufügen:</label><br>
+			<input type="text" id="iAddTitle" name="iAddTitle"><br>
+		</div>
+		<div>
+			<input type="button" name="sAddTitleTemp" id="sAddTitleTemp" value="Titel temporär hinzufügen"><br>
+			<input type="button" name="sAddTitle" id="sAddTitle" value="Titel dauerhaft hinzufügen">
+		</div>
+	</div>
 </form>
 <script type="text/javascript" src="main.js"></script>
 </body>

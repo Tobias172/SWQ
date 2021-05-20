@@ -1,6 +1,5 @@
 .flex-container {
   display: flex;
-//  background-color: DodgerBlue;
 }
 
 .flex-container > div {
@@ -10,7 +9,7 @@
   font-size: 20px;
 }
 
-.output {
+.heading {
   margin: 10px;
   font-size: 20px;
 }
