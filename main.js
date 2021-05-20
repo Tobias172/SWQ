@@ -1,30 +1,17 @@
-$(document).ready(function() {
-    $.ajax({
-        type: "GET",
-        url: "germanTitles.csv",
-        dataType: "text",
-        success: function(data) {processTitleData(data);}
-     });
-    $.ajax({
-        type: "GET",
-        url: "german.csv",
-        dataType: "text",
-        success: function(data) {processData(data);} 
-    })
-});
-
-function processTitleData(allText) {
-    var allTextLines = allText.split(/\r\n|\n/);
-    var headers = allTextLines[0].split(',');
-    // alert(lines);
-}
+document.getElementById('iLanguageFile').addEventListener('change', function (e){
+    var files = e.target.files;
+    const reader = new FileReader()
+    reader.readAsText(files[0]);
+    reader.onload = (event) => processData(event.target.result)
+}, false);
 
 function processData(allText) {
     var allTextLines = allText.split(/\r\n|\n/);
-    var headers = allTextLines[0].split(',');
+    var titles = allTextLines[0].split(',');
+    var headers = allTextLines[1].split(',');
     var lines = [];
 
-    for (var i=1; i<allTextLines.length; i++) {
+    for (var i=2; i<5; i++) {
         var data = allTextLines[i].split(',');
         if (data.length == headers.length) {
 
@@ -35,5 +22,7 @@ function processData(allText) {
             lines.push(tarr);
         }
     }
+    console.log(titles)
+    console.log(lines)
     // alert(lines);
 }
