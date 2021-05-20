@@ -1,48 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.flex-container {
+//  display: flex;
+//  background-color: DodgerBlue;
+}
+
+.flex-container > div {
+//  background-color: #f1f1f1;
+//  margin: 10px;
+//  padding: 20px;
+//  font-size: 30px;
+}
+</style>
+</head>
+<body>
+
 <form id="ContactSplit" name="ContactSplit">
-  <label for="iInput">Eingabe:</label>
-  <input type="text" id="iInput" name="iInput"><br><br>
-  
-  <label for="iOutput">Ausgabe:</label>
-  <div id="iOutput" name="iOutput">
-	<div>
-		<label for="iSalutation">Anrede:</label>
-		<input type="text" id="iSalutation" name="iSalutation"><br><br>
+	<div class="flex-container">
+		<label for="iInput">Eingabe:</label>
+		<input type="text" id="iInput" name="iInput"><br><br>
+
+		<label for="iOutput">Ausgabe:</label>
+		<div id="iOutput" name="iOutput">
+		<div>
+			<label for="iSalutation">Anrede:</label>
+			<input type="text" id="iSalutation" name="iSalutation"><br><br>
+		</div>
+		<div>
+			<label for="iSalutationLetter">Briefanrede:</label>
+			<input type="text" id="iSalutationLetter" name="iSalutationLetter"><br><br>
+		</div>
+		<div>
+			<label for="iTitle">Titel:</label>
+			<input type="text" id="iTitle" name="iTitle"><br><br>
+		</div>
+		<div>
+			<label for="iGender">Geschlecht:</label>
+			<input type="text" id="iGender" name="iGender"><br><br>
+		</div>
+		<div>
+			<label for="iFirstName">Vorname:</label>
+			<input type="text" id="iFirstName" name="iFirstName"><br><br>
+		</div>
+		<div>
+			<label for="iLastName">Nachname:</label>
+			<input type="text" id="iLastName" name="iLastName"><br><br>
+		</div>
+		
+		<input type="radio" id="male" name="gender" value="male">
+		<label for="male">Männlich</label><br>
+		<input type="radio" id="female" name="gender" value="female">
+		<label for="female">Weiblich</label><br>
+		<input type="radio" id="other" name="gender" value="other">
+		<label for="other">Divers</label>
+		
+		<label for="iLeftover">Nicht erkannter Text:</label>
+		<input type="text" id="iLeftover" name="iLeftover"><br><br>
+		
+		<label for="iTotal">Gesamt:</label>
+		<input type="text" id="iTotal" name="iTotal"><br><br>
+		
+		<input type="submit" name="sConvert" value="Convertieren">
 	</div>
-	<div>
-		<label for="iSalutationLetter">Briefanrede:</label>
-		<input type="text" id="iSalutationLetter" name="iSalutationLetter"><br><br>
-	</div>
-	<div>
-		<label for="iTitle">Titel:</label>
-		<input type="text" id="iTitle" name="iTitle"><br><br>
-	</div>
-	<div>
-		<label for="iGender">Geschlecht:</label>
-		<input type="text" id="iGender" name="iGender"><br><br>
-	</div>
-	<div>
-		<label for="iFirstName">Vorname:</label>
-		<input type="text" id="iFirstName" name="iFirstName"><br><br>
-	</div>
-	<div>
-		<label for="iLastName">Nachname:</label>
-		<input type="text" id="iLastName" name="iLastName"><br><br>
-	</div>
-	
-	<input type="radio" id="male" name="gender" value="male">
-	<label for="male">Männlich</label><br>
-	<input type="radio" id="female" name="gender" value="female">
-	<label for="female">Weiblich</label><br>
-	<input type="radio" id="other" name="gender" value="other">
-	<label for="other">Divers</label>
-	
-	<label for="iLeftover">Nicht erkannter Text:</label>
-	<input type="text" id="iLeftover" name="iLeftover"><br><br>
-	
-	<label for="iTotal">Gesamt:</label>
-	<input type="text" id="iTotal" name="iTotal"><br><br>
-  </div>
-  <input type="submit" name="sConvert" value="Convertieren">
 </form>
 
 <form>
@@ -51,3 +72,6 @@
 	<input type="submit" name="sAddTitleTemp" value="Titel temporär hinzufügen">
 	<input type="submit" name="sAddTitle" value="Titel dauerhaft hinzufügen">
 </form>
+
+</body>
+</html>
