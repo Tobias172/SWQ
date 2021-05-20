@@ -7,7 +7,7 @@ $(document).ready(function() {
      });
     $.ajax({
         type: "GET",
-        url: "data.txt",
+        url: "german.csv",
         dataType: "text",
         success: function(data) {processData(data);} 
     })
