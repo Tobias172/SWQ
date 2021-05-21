@@ -74,6 +74,7 @@ var leftover;
 
 
 function splitInput(text){
+    var lastNameFirst = false;
     clearAllFields();
     var splitText = text.split(' ');
     var i = salutations[1].indexOf("other");
@@ -84,7 +85,7 @@ function splitInput(text){
     salutation = salutations[0][i];
     gender = salutations[1][i];
     letterSalutation = salutations[2][i];
-    recursiveOuterFunction(text)
+    recursiveOuterFunction(text);
     var names = getNamesFromLeftovers(text, titleArray);
     var left = getLeftoversFromLeftovers(text, titleArray, names);
     var tarr = [...names];
@@ -121,10 +122,9 @@ function getFirstNames(array){
 
 function getNamesFromLeftovers(text, array){
     var arr = [];
-    if(array.length == 0){
-        return(text.split(" "))
+    for(var j = 0; j < array.length; j++){
+        text = text.replace(array[j], "");
     }
-    text = text.substring(text.indexOf(array[array.length-1])+array[array.length-1].length+1 ,text.length);
     var tarr = text.split(" ");
     for(var j = 0; j < tarr.length; j++){
         if(tarr[j] != " " && tarr[j] != ""){
@@ -148,26 +148,31 @@ function getLeftoversFromLeftovers(text, array, namesArr){
     return(arr);
 }
 
-function recursiveOuterFunction(text){
-    recursiveInnerFunction(text);
-    if(text.indexOf(" ")==-1){ return ""; } 
-    text = text.substring(text.indexOf(" "), text.length);
-    if(text[0] == " "){ text=text.substring(1, text.length); }
-    if(text!=""){ recursiveOuterFunction(text); }
-    return text;
-}
-
 function recursiveInnerFunction(text){
     for(var j = 0; j < titles.length; j++){
         if(titles[j] == text){
             titleArray.push(titles[j]);
-            break;
+            return;
         }
     }
-    if(text.lastIndexOf(" ")==-1){ return ""; } 
-    text = text.substring(0, text.lastIndexOf(" "));
+    if(text.indexOf(" ")==-1){ return; } 
+    text = text.substring(text.indexOf(" "), text.length);
+    if(text[0] == " "){ text=text.substring(1, text.length); }
     if(text!=""){ recursiveInnerFunction(text); }
-    return text;
+    return;
+}
+
+function recursiveOuterFunction(text){
+    recursiveInnerFunction(text);
+    if(titleArray.length != 0){
+        for(var j = 0; j<titleArray.length; j++){
+            text=text.replace(titleArray[j],"");
+        }
+    }
+    if(text.lastIndexOf(" ")==-1){ return; } 
+    text = text.substring(0, text.lastIndexOf(" "));
+    if(text!=""){ recursiveOuterFunction(text); }
+    return;
 }
 
 function processData(allText) {
