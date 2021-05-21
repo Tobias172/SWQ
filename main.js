@@ -31,6 +31,7 @@ function splitInput(text){
         text = text.substring(splitText[0].length+1, text.length);
     }
     salutation = salutations[0][i];
+    gender = salutations[1][i];
     letterSalutation = salutations[2][i];
     recursiveOuterFunction(text)
     var names = getNamesFromLeftovers(text, titleArray);
@@ -56,6 +57,10 @@ function getFirstNames(array){
 
 function getNamesFromLeftovers(text, array){
     var arr = [];
+    console.log(text);
+    if(array.length == 0){
+        return(text.split(" "))
+    }
     text = text.substring(text.indexOf(array[array.length-1])+array[array.length-1].length+1 ,text.length);
     var tarr = text.split(" ");
     for(var j = 0; j < tarr.length; j++){
