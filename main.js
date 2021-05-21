@@ -22,6 +22,10 @@ document.getElementById('other').addEventListener('change', function (e){
     }
 }, false);
 
+document.getElementById('iSalutationLetter').addEventListener('input', function (e){
+    letterSalutationChanged(e.target.value);
+}, false);
+
 document.getElementById('sConvert').addEventListener('mouseup', function (e){
     var inputData = document.getElementById('iInput').value;
     splitInput(inputData);
@@ -98,17 +102,21 @@ function splitInput(text){
     lastname = getLastName(tarr, lastNameFirst);
     tarr = [...names];
     firstNamesArray = getFirstNames(tarr, lastNameFirst);
-    firstnames = firstNamesArray.join(", ")
+    firstnames = firstNamesArray.join(" ")
     leftover = left.join(", ");
     title = titleArray.join(", ");
     fillAllFields();
+}
+
+function letterSalutationChanged(text){
+    letterSalutation = text;
+    fillTotal();
 }
 
 function genderChanged(text){
     if(salutations[1].includes(text)){
         i = salutations[1].indexOf(text);
     } else {
-        //errorhandling
         return;
     }
     salutation = salutations[0][i];
