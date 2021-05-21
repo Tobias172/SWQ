@@ -23,26 +23,26 @@ var leftover;
 
 
 function splitInput(text){
+    clearAllFields();
     var splitText = text.split(' ');
     var i = salutations[1].indexOf("other");
     if(salutations[0].includes(splitText[0])){
         i = salutations[0].indexOf(splitText[0]);
         text = text.substring(splitText[0].length+1, text.length);
     }
+    salutation = salutations[0][i];
+    letterSalutation = salutations[2][i];
     recursiveOuterFunction(text)
     var names = getNamesFromLeftovers(text, titleArray);
     var left = getLeftoversFromLeftovers(text, titleArray, names);
     var tarr = [...names];
     lastname = getLastName(tarr);
-    console.log(lastname);
     tarr = [...names];
     var firstnamesArr = getFirstNames(tarr);
     firstnames = firstnamesArr.join(", ")
-    console.log(firstnames);
     leftover = left.join(", ");
-    console.log(leftover);
     title = titleArray.join(", ");
-    console.log(title);
+    fillAllFields();
 }
 
 function getLastName(array){
