@@ -250,8 +250,12 @@ function fillTotal(){
     if(salutation != ""){
         totalString += salutation+" ";
     }
-    totalString += titleArray.join(" ") + " ";
-    totalString += firstNamesArray.join(" ") + " ";
+    if(titleArray.length != 0){
+        totalString += titleArray.join(" ") + " ";
+    }
+    if(firstNamesArray.length != 0){
+        totalString += firstNamesArray.join(" ") + " ";
+    }
     totalString += lastname;
     document.getElementById("iTotal").value = totalString;
 }
