@@ -1,6 +1,7 @@
 document.getElementById('iLanguageFile').addEventListener('change', function (e){
     var files = e.target.files;
     const reader = new FileReader()
+    filename = e.target.value.substring(12,e.target.value.length);
     reader.readAsText(files[0]);
     reader.onload = (event) => processData(event.target.result)
 }, false);
@@ -10,7 +11,40 @@ document.getElementById('sConvert').addEventListener('mouseup', function (e){
     splitInput(inputData);
 }, false);
 
+document.getElementById('sAddTitleTemp').addEventListener('mouseup', function (e){
+    var inputData = document.getElementById('iAddTitle').value;
+    titles.push(inputData);
+}, false);
+
+document.getElementById('sAddTitle').addEventListener('mouseup', function (e){
+    var inputData = document.getElementById('iAddTitle').value;
+    titles.push(inputData);
+    permTitles.push(inputData);
+}, false);
+
+document.getElementById('sDownloadCsv').addEventListener('mouseup', function (e){
+    var csvContent = "data:text/csv;charset=utf-8,"+permTitles.join(",")+"\r\n";
+    salutations.forEach(function(rowArray) {
+        let row = rowArray.join(",");
+        csvContent += row + "\r\n";
+    });
+    var encodeUri = encodeURI(csvContent);
+    var element = document.createElement('a');
+    element.setAttribute('href', encodeUri);
+    element.setAttribute('download', filename);
+
+    element.style.display = 'none';
+    document.body.appendChild(element);
+
+    element.click();
+
+    document.body.removeChild(element);
+
+}, false);
+
+var filename;
 var titles;
+var permTitles;
 var salutations;
 var salutation;
 var titleArray = [];
@@ -109,7 +143,8 @@ function recursiveInnerFunction(text){
 function processData(allText) {
     var allTextLines = allText.split(/\r\n|\n/);
     salutations = [];
-    titles = allTextLines[0].split(',');
+    permTitles = allTextLines[0].split(',');
+    titles = [...permTitles];
     var headers = allTextLines[1].split(',');
     for (var i=1; i<5; i++) {
         var data = allTextLines[i].split(',');
