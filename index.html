@@ -1,42 +1,50 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<!-- All styling is done in the file below -->
 	<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
 <form id="ContactSplit" name="ContactSplit">
 	<div>
+		<!-- Input for Contact Splitter -->
 		<div class="flex-container">
+			<!-- Input for Contact to be split -->
 			<div>
 				<label for="iInput">Eingabe:</label><br>
 				<input type="text" id="iInput" name="iInput"><br>
 			</div>
+			<!-- Input for Language File(.csv) -->
 			<div>
 				<label for="iLanguageFile">Sprachdatei:</label><br>
 				<input type="file" id="iLanguageFile" name="iLanguageFile" accept=".csv"><br>
 			</div>
+			<!-- Button to split Contact into its parts -->
 			<div>
 				<input type="button" name="sConvert" id="sConvert" value="Konvertieren">
 			</div>
 		</div>
-		
+		<!-- Output from Contact Splitter -->
 		<label for="iOutput" class="heading">Ausgabe:</label><br>
 		<div id="iOutput" name="iOutput" class="flex-container">
+			<!-- Part of Contact: Salutation -->
 			<div>
 				<label for="iSalutation">Anrede:</label><br>
 				<input type="text" id="iSalutation" name="iSalutation"><br>
 			</div>
+			<!-- Part of Contact: Greeting -->
 			<div>
 				<label for="iSalutationLetter">Briefanrede:</label><br>
 				<input type="text" id="iSalutationLetter" name="iSalutationLetter"><br>
 			</div>
+			<!-- Part of Contact: Title / Titles -->
 			<div>
 				<label for="iTitle">Titel:</label><br>
 				<input type="text" id="iTitle" name="iTitle"><br>
 			</div>
 		</div>
 		<div id="iOutput2" name="iOutput2" class="flex-container">
+			<!-- Part of Contact: Gender -->
 			<div>
 				<input type="radio" id="male" name="gender" value="male">
 				<label for="male">Männlich</label><br>
@@ -45,20 +53,24 @@
 				<input type="radio" id="other" name="gender" value="other">
 				<label for="other">Divers</label><br>
 			</div>
+			<!-- Part of Contact: First Name -->
 			<div>
 				<label for="iFirstName">Vorname:</label><br>
 				<input type="text" id="iFirstName" name="iFirstName"><br>
 			</div>
+			<!-- Part of Contact: Last Name -->
 			<div>
 				<label for="iLastName">Nachname:</label><br>
 				<input type="text" id="iLastName" name="iLastName"><br>
 			</div>
 		</div>
 		<div id="iOutput3" name="iOutput3" class="flex-container">
+			<!-- Any Part of the Contact, that could not be recognized -->
 			<div>
 				<label for="iLeftover">Nicht erkannter Text:</label><br>
 				<input type="text" id="iLeftover" name="iLeftover"><br>
 			</div>
+			<!-- A complete Greeting, based on all the information above -->
 			<div>
 				<label for="iTotal">Gesamt:</label><br>
 				<input type="text" id="iTotal" name="iTotal"><br>
@@ -66,20 +78,24 @@
 		</div>
 	</div>
 </form>
-
 <form>
+	<!-- Additional Functions -->
 	<label for="iTitleEditor" class="heading">Weitere Funktionen:</label><br>
 	<div id="iTitleEditor" name="iTitleEditor" class="flex-container">
+		<!-- Input for additional Titles -->
 		<div>
 			<label for="iAddTitle">Titel hinzufügen:</label><br>
 			<input type="text" id="iAddTitle" name="iAddTitle"><br>
 		</div>
 		<div>
+			<!-- Add a Title temporarily -->
 			<input type="button" name="sAddTitleTemp" id="sAddTitleTemp" value="Titel temporär hinzufügen"><br>
+			<!-- Add a Title permanently -->
 			<input type="button" name="sAddTitle" id="sAddTitle" value="Titel dauerhaft hinzufügen">
 		</div>
 	</div>
 </form>
+<!-- All functionality is implemented in the file below -->
 <script type="text/javascript" src="main.js"></script>
 </body>
 </html>

@@ -1,7 +1,9 @@
+/* Container for layout using flex-box */
 .flex-container {
   display: flex;
 }
 
+/* every div in a Container is displayed as a grey box */
 .flex-container > div {
   background-color: #f1f1f1;
   margin: 5px;
@@ -9,6 +11,7 @@
   font-size: 20px;
 }
 
+/* heading for text outside of a container */
 .heading {
   margin: 10px;
   font-size: 20px;
