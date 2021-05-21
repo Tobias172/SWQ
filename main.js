@@ -6,6 +6,22 @@ document.getElementById('iLanguageFile').addEventListener('change', function (e)
     reader.onload = (event) => processData(event.target.result)
 }, false);
 
+document.getElementById('male').addEventListener('change', function (e){
+    if(e.target.checked && salutations.length != 0){
+        genderChanged("male");
+    }
+}, false);
+document.getElementById('female').addEventListener('change', function (e){
+    if(e.target.checked && salutations.length != 0){
+        genderChanged("female");
+    }
+}, false);
+document.getElementById('other').addEventListener('change', function (e){
+    if(e.target.checked && salutations.length != 0){
+        genderChanged("other");
+    }
+}, false);
+
 document.getElementById('sConvert').addEventListener('mouseup', function (e){
     var inputData = document.getElementById('iInput').value;
     splitInput(inputData);
@@ -51,6 +67,7 @@ var titleArray = [];
 var title;
 var letterSalutation;
 var gender;
+var firstNamesArray = [];
 var firstnames;
 var lastname;
 var leftover;
@@ -73,11 +90,24 @@ function splitInput(text){
     var tarr = [...names];
     lastname = getLastName(tarr);
     tarr = [...names];
-    var firstnamesArr = getFirstNames(tarr);
-    firstnames = firstnamesArr.join(", ")
+    firstNamesArray = getFirstNames(tarr);
+    firstnames = firstNamesArray.join(", ")
     leftover = left.join(", ");
     title = titleArray.join(", ");
     fillAllFields();
+}
+
+function genderChanged(text){
+    if(salutations[1].includes(text)){
+        i = salutations[1].indexOf(text);
+    } else {
+        //errorhandling
+        return;
+    }
+    salutation = salutations[0][i];
+    gender = salutations[1][i];
+    letterSalutation = salutations[2][i];
+    updateSalutations();
 }
 
 function getLastName(array){
@@ -166,6 +196,7 @@ function clearAllFields(){
     title = "";
     letterSalutation = "";
     gender = "";
+    firstNamesArray = [];
     firstnames = "";
     lastname = "";
     leftover = "";
@@ -177,7 +208,8 @@ function clearAllFields(){
     document.getElementById("iTitle").value = "";
     document.getElementById("iFirstName").value = "";
     document.getElementById("iLastName").value = "";
-    document.getElementById("iLeftover").value = "";
+    document.getElementById("iLeftover").value = "";iTotal
+    document.getElementById("iTotal").value = "";
 }
 
 function fillAllFields(){
@@ -194,4 +226,23 @@ function fillAllFields(){
     document.getElementById("iFirstName").value = firstnames;
     document.getElementById("iLastName").value = lastname;
     document.getElementById("iLeftover").value = leftover;
+    fillTotal();
+}
+
+function fillTotal(){
+    document.getElementById("iTotal").value = "";
+    var totalString = letterSalutation+" ";
+    if(salutation != ""){
+        totalString += salutation+" ";
+    }
+    totalString += titleArray.join(" ");
+    totalString += firstNamesArray.join(" ");
+    totalString += " "+lastname;
+    document.getElementById("iTotal").value = totalString;
+}
+
+function updateSalutations(){
+    document.getElementById("iSalutation").value = salutation;
+    document.getElementById('iSalutationLetter').value= letterSalutation;
+    fillTotal();
 }
