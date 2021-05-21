@@ -57,7 +57,6 @@ function getFirstNames(array){
 
 function getNamesFromLeftovers(text, array){
     var arr = [];
-    console.log(text);
     if(array.length == 0){
         return(text.split(" "))
     }
@@ -127,6 +126,14 @@ function processData(allText) {
 }
 
 function clearAllFields(){
+    salutation = "";
+    titleArray = [];
+    title = "";
+    letterSalutation = "";
+    gender = "";
+    firstnames = "";
+    lastname = "";
+    leftover = "";
     document.getElementById("iSalutation").value = "";
     document.getElementById('male').checked = false;
     document.getElementById('female').checked = false;
