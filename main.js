@@ -78,7 +78,7 @@ function splitInput(text){
     clearAllFields();
     if(text.includes(",")){
         lastNameFirst=true;
-        text = text.replace(", ", "");
+        text = text.replace(",", "");
     }
     var splitText = text.split(' ');
     var i = salutations[1].indexOf("other");
@@ -203,7 +203,6 @@ function processData(allText) {
             salutations.push(tarr);
         }
     }
-    // alert(lines);
 }
 
 function clearAllFields(){
