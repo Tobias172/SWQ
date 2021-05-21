@@ -64,6 +64,7 @@ var permTitles;
 var salutations;
 var salutation;
 var titleArray = [];
+var removableTitle;
 var title;
 var letterSalutation;
 var gender;
@@ -89,6 +90,7 @@ function splitInput(text){
     salutation = salutations[0][i];
     gender = salutations[1][i];
     letterSalutation = salutations[2][i];
+    removableTitle="";
     recursiveOuterFunction(text);
     var names = getNamesFromLeftovers(text, titleArray);
     var left = getLeftoversFromLeftovers(text, titleArray, names);
@@ -133,9 +135,16 @@ function getFirstNames(array, lastNameFirst){
 
 function getNamesFromLeftovers(text, array){
     var arr = [];
-    for(var j = 0; j < array.length; j++){
-        text = text.replace(array[j], "");
+    var i = 0;
+    if(array.length == 0){
+        return(text.split(" "))
     }
+    for(var j = 0; j < array.length; j++){
+        if(text.lastIndexOf(array[j])+array[j].length > i){
+            i = text.lastIndexOf(array[j])+array[j].length;
+        }
+    }
+    text = text.substring((i),text.length);
     var tarr = text.split(" ");
     for(var j = 0; j < tarr.length; j++){
         if(tarr[j] != " " && tarr[j] != ""){
@@ -147,8 +156,9 @@ function getNamesFromLeftovers(text, array){
 
 function getLeftoversFromLeftovers(text, array, namesArr){
     var arr = [];
-    for(var j = 0; j < array.length; j++){
-        text = text.replace(array[j], "");
+    console.log(array);
+    for(var j = array.length-1; j >= 0; j--){
+        text = removeLastOccurence(text,array[j]);
     }
     var tarr = text.split(" ");
     for(var j = 0; j < tarr.length; j++){
@@ -160,14 +170,17 @@ function getLeftoversFromLeftovers(text, array, namesArr){
 }
 
 function recursiveInnerFunction(text){
+    console.log(text);
     for(var j = 0; j < titles.length; j++){
         if(titles[j] == text){
             titleArray.push(titles[j]);
+            removableTitle = titles[j];
             return;
         }
     }
     if(text.indexOf(" ")==-1){ return; } 
     text = text.substring(text.indexOf(" "), text.length);
+    console.log(text);
     if(text[0] == " "){ text=text.substring(1, text.length); }
     if(text!=""){ recursiveInnerFunction(text); }
     return;
@@ -175,15 +188,23 @@ function recursiveInnerFunction(text){
 
 function recursiveOuterFunction(text){
     recursiveInnerFunction(text);
-    if(titleArray.length != 0){
-        for(var j = 0; j<titleArray.length; j++){
-            text=text.replace(titleArray[j],"");
-        }
+    if(removableTitle != ""){
+        text = removeLastOccurence(text, removableTitle);
     }
     if(text.lastIndexOf(" ")==-1){ return; } 
     text = text.substring(0, text.lastIndexOf(" "));
-    if(text!=""){ recursiveOuterFunction(text); }
+    if(text!=""){ 
+        recursiveOuterFunction(text); 
+        }
     return;
+}
+
+function removeLastOccurence(text, toRemove){
+    var ret = text;
+    if(text.indexOf(toRemove) != -1){
+        ret =  text.substring(0, text.lastIndexOf(toRemove))+text.substring(text.lastIndexOf(toRemove)+toRemove.length, text.length);
+    }
+    return ret;
 }
 
 function processData(allText) {
