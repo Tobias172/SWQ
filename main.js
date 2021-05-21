@@ -76,6 +76,10 @@ var leftover;
 function splitInput(text){
     var lastNameFirst = false;
     clearAllFields();
+    if(text.includes(",")){
+        lastNameFirst=true;
+        text = text.replace(", ", "");
+    }
     var splitText = text.split(' ');
     var i = salutations[1].indexOf("other");
     if(salutations[0].includes(splitText[0])){
@@ -89,9 +93,9 @@ function splitInput(text){
     var names = getNamesFromLeftovers(text, titleArray);
     var left = getLeftoversFromLeftovers(text, titleArray, names);
     var tarr = [...names];
-    lastname = getLastName(tarr);
+    lastname = getLastName(tarr, lastNameFirst);
     tarr = [...names];
-    firstNamesArray = getFirstNames(tarr);
+    firstNamesArray = getFirstNames(tarr, lastNameFirst);
     firstnames = firstNamesArray.join(", ")
     leftover = left.join(", ");
     title = titleArray.join(", ");
@@ -111,11 +115,18 @@ function genderChanged(text){
     updateSalutations();
 }
 
-function getLastName(array){
+function getLastName(array, lastNameFirst){
+    if(lastNameFirst){
+        return array.shift();
+    }
     return array.pop();
 }
 
-function getFirstNames(array){
+function getFirstNames(array, lastNameFirst){
+    if(lastNameFirst){
+        array.shift()
+        return array;
+    }
     array.pop();
     return array;
 }
@@ -240,9 +251,9 @@ function fillTotal(){
     if(salutation != ""){
         totalString += salutation+" ";
     }
-    totalString += titleArray.join(" ");
-    totalString += firstNamesArray.join(" ");
-    totalString += " "+lastname;
+    totalString += titleArray.join(" ") + " ";
+    totalString += firstNamesArray.join(" ") + " ";
+    totalString += lastname;
     document.getElementById("iTotal").value = totalString;
 }
 
